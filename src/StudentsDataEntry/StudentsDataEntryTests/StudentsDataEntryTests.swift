@@ -7,30 +7,40 @@
 //
 
 import XCTest
+
 @testable import StudentsDataEntry
 
 class StudentsDataEntryTests: XCTestCase {
-    
+	var dataSource : PersistentDataSource? = nil;
+	
+	// Called before each test.
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+		
+		do {
+			// Create the persistent store for testing
+			let model = "StudentsDataEntry";
+			let url = self.persistentStoreURL();
+			self.dataSource = try PersistentDataSource(storePath: url, modelName: model);
+		} catch let error as NSError {
+			XCTAssert(false, "Failed to initialize data store: \(error.localizedDescription)");
+		}
     }
-    
+	
+	// Called after each test
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+	
+	// MARK: - Helper Methods
+	
+	func testPlaceholder() {
+	}
+
+	// @return URL pointing to the user document directory.
+	func persistentStoreURL() -> URL {
+		// This is a generic apple-provided segment for getting the home directory
+		let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+		return urls[urls.count - 1];
+	}
 }
