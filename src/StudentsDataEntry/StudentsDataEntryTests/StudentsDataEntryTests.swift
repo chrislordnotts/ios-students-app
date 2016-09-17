@@ -21,7 +21,7 @@ class StudentsDataEntryTests: XCTestCase {
 			// Create the persistent store for testing
 			let model = "StudentsDataEntry";
 			let url = self.persistentStoreURL();
-			self.dataSource = try PersistentDataSource(storePath: url, modelName: model);
+			self.dataSource = try PersistentDataSource(url: url, modelName: model);
 		} catch let error as NSError {
 			XCTAssert(false, "Failed to initialize data store: \(error.localizedDescription)");
 		}
