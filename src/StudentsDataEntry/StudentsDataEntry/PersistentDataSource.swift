@@ -12,17 +12,24 @@ import CoreData
 enum PersistentStoreError: Error {
 	case notImplemented
 	case modelNotFound
+	case modelLoadFailed
+	case storeCreateFailed
+	case storeLoadFailed
 }
 
 class PersistentDataSource {
 	
 	var managedObjectModel : NSManagedObjectModel?;
+	var coordinator : NSPersistentStoreCoordinator?;
 
 	// @param storePath The path to manage the data source at.
 	// @param modelName The name of the momd file to use
-	init(storePath : URL, modelName : String) throws {
+	init(url : URL, modelName : String) throws {
+		self.managedObjectModel = nil;
+		self.coordinator = nil;
+		
 		try self.initManagedObjectModel(modelName: modelName);
-		try self.initPersistentStoreCoordinator(path: storePath);
+		try self.initPersistentStoreCoordinator(url: url);
 		try self.initManagedObjectContext();
 	}
 	
@@ -30,6 +37,7 @@ class PersistentDataSource {
 	// the main application bundle.
 	//
 	// @throws PersistentStoreError.modelNotFound The model file does not exist in the main application bundle.
+	// @throws PersistentStoreError.modelLoadFailed The model exists but it could not be loaded.
 	internal func initManagedObjectModel(modelName : String) throws {
 		// Determine if the model exists in the main bundle
 		let url = Bundle.main.url(forResource: modelName, withExtension: "momd")!;
@@ -37,7 +45,11 @@ class PersistentDataSource {
 			throw PersistentStoreError.modelNotFound;
 		}
 		
+		// Attempt to load the model
 		self.managedObjectModel = NSManagedObjectModel(contentsOf: url);
+		if(self.managedObjectModel == nil) {
+			throw PersistentStoreError.modelLoadFailed
+		}
 	}
 	
 	// Initializes the persistent store - the location CoreData
@@ -45,8 +57,23 @@ class PersistentDataSource {
 	// end up creating the database. On second load, this will not
 	// only load the old database - but it will validate that it 
 	// it conforms to the MOMD.
-	internal func initPersistentStoreCoordinator(path : URL) throws {
-		throw PersistentStoreError.notImplemented;
+	internal func initPersistentStoreCoordinator(url : URL) throws {
+		self.coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel!);
+		if(coordinator == nil) {
+			throw PersistentStoreError.storeCreateFailed
+		} else {
+			do {
+				try self.coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+			} catch let error as NSError {
+				// This is a serious error that is caused by bad configuration
+				// of the managed object model. In most scenarios, the best way
+				// to recover is to delete the database. Obviously we'll loose
+				// data in that scenario - but it is completely preventable by
+				// being aware that model updates have to be done correctly.
+				print("Failed to load persistent store: \(error.localizedDescription)");
+				throw PersistentStoreError.storeLoadFailed
+			}
+		}
 	}
 	
 	// Initializes the main object context for the master thread.
