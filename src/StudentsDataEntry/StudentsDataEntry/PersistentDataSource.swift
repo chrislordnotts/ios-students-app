@@ -26,6 +26,7 @@ class PersistentDataSource {
 
 	// @param storePath The path to manage the data source at.
 	// @param modelName The name of the momd file to use
+	// @throw Allows the init exceptions to propogate
 	init(url : URL, modelName : String) throws {
 		self.managedObjectModel = nil;
 		self.managedObjectContext = nil;
@@ -39,8 +40,8 @@ class PersistentDataSource {
 	// Initializes the managed object model by loading it from
 	// the main application bundle.
 	//
-	// @throws PersistentStoreError.modelNotFound The model file does not exist in the main application bundle.
-	// @throws PersistentStoreError.modelLoadFailed The model exists but it could not be loaded.
+	// @throw PersistentStoreError.modelNotFound The model file does not exist in the main application bundle.
+	// @throw PersistentStoreError.modelLoadFailed The model exists but it could not be loaded.
 	internal func initManagedObjectModel(modelName : String) throws {
 		// Determine if the model exists in the main bundle
 		let url = Bundle.main.url(forResource: modelName, withExtension: "momd")!;
@@ -64,8 +65,6 @@ class PersistentDataSource {
 	// @throw PersistentStoreError.storeCreateFailed Could not create the store object. Ensure that the URL is valid.
 	// @throw PersistentStoreError.storeLoadFailed The store could not be loaded: ensure the correct model is being used.
 	internal func initPersistentStoreCoordinator(url : URL) throws {
-		
-		print("initPersist");
 		self.coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel!);
 		if(coordinator == nil) {
 			throw PersistentStoreError.storeCreateFailed
