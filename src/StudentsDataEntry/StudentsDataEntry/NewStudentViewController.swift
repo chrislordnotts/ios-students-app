@@ -18,6 +18,7 @@ class NewStudentViewController: ViewController {
 	@IBOutlet weak var emailField : UITextField?;
 	@IBOutlet weak var maleButton : UIButton?;
 	@IBOutlet weak var femaleButton : UIButton?;
+	@IBOutlet weak var saveButton : UIBarButtonItem?;
 	
 	// MARK: - UI Events
 	
@@ -29,5 +30,10 @@ class NewStudentViewController: ViewController {
 	// Event handler for when the user presses the female button
 	@IBAction func didPressFemaleButton() {
 		print("Did press female button");
+	}
+	
+	// Event handler for when the save button is pressed
+	@IBAction func didPressSaveButton() {
+		print("Did press save button");
 	}
 }
