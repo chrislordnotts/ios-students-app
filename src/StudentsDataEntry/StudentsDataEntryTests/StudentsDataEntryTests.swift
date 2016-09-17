@@ -41,6 +41,6 @@ class StudentsDataEntryTests: XCTestCase {
 	func persistentStoreURL() -> URL {
 		// This is a generic apple-provided segment for getting the home directory
 		let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-		return urls[urls.count - 1];
+		return urls[urls.count - 1].appendingPathComponent("data.sqlite");
 	}
 }
