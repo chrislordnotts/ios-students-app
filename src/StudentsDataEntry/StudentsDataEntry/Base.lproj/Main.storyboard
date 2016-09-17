@@ -82,6 +82,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="094-tB-onm" id="uZo-dY-dH7"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJs-WG-cRi">
                                 <frame key="frameInset" minX="78" minY="147" width="164" height="30"/>
@@ -89,6 +92,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="094-tB-onm" id="dhB-7R-phl"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dyD-0A-r6O">
                                 <frame key="frameInset" minX="78" minY="257" width="164" height="30"/>
@@ -136,6 +142,7 @@
                         <outlet property="firstNameField" destination="uNf-dy-rGl" id="U8R-QZ-w3e"/>
                         <outlet property="lastNameField" destination="DJs-WG-cRi" id="svt-Ko-Iiy"/>
                         <outlet property="maleButton" destination="C2c-wQ-LLV" id="dyg-Da-hqU"/>
+                        <outlet property="saveButton" destination="lUN-XO-h9K" id="cQj-VL-GCg"/>
                         <outlet property="universityNameField" destination="lqR-sH-KII" id="Fag-Mj-jTF"/>
                     </connections>
                 </viewController>

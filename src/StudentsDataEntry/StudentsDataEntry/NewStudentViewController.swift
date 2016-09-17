@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // Manages the data entry view controller for adding new students.
-class NewStudentViewController: ViewController {
+class NewStudentViewController: ViewController, UITextFieldDelegate {
 	
 	@IBOutlet weak var firstNameField : UITextField?;
 	@IBOutlet weak var lastNameField : UITextField?;
@@ -19,6 +19,8 @@ class NewStudentViewController: ViewController {
 	@IBOutlet weak var maleButton : UIButton?;
 	@IBOutlet weak var femaleButton : UIButton?;
 	@IBOutlet weak var saveButton : UIBarButtonItem?;
+	
+	var isMale : Bool = true;
 	
 	// MARK: - UI Events
 	
@@ -36,4 +38,28 @@ class NewStudentViewController: ViewController {
 	@IBAction func didPressSaveButton() {
 		print("Did press save button");
 	}
+	
+	// Event handler for when any text field has changed
+	@IBAction func textFieldValueChanged() {
+		print("Text field changed");
+	}
+	
+	// MARK: - UITextFieldDelete
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		
+		// Each element on the interface has a meta field called 'tag'.
+		// This tag allows us to manually select which element should
+		// be focused next.
+		let nextTag = textField.tag + 1;
+		let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder!
+		if(nextResponder != nil) {
+			nextResponder?.becomeFirstResponder();
+		} else {
+			textField.resignFirstResponder();
+		}
+		
+		return false;
+	}
+	
 }
