@@ -15,17 +15,20 @@ enum PersistentStoreError: Error {
 	case modelLoadFailed
 	case storeCreateFailed
 	case storeLoadFailed
+	case contextCreateFailed
 }
 
 class PersistentDataSource {
 	
 	var managedObjectModel : NSManagedObjectModel?;
 	var coordinator : NSPersistentStoreCoordinator?;
+	var managedObjectContext : NSManagedObjectContext?;
 
 	// @param storePath The path to manage the data source at.
 	// @param modelName The name of the momd file to use
 	init(url : URL, modelName : String) throws {
 		self.managedObjectModel = nil;
+		self.managedObjectContext = nil;
 		self.coordinator = nil;
 		
 		try self.initManagedObjectModel(modelName: modelName);
@@ -57,7 +60,12 @@ class PersistentDataSource {
 	// end up creating the database. On second load, this will not
 	// only load the old database - but it will validate that it 
 	// it conforms to the MOMD.
+	//
+	// @throw PersistentStoreError.storeCreateFailed Could not create the store object. Ensure that the URL is valid.
+	// @throw PersistentStoreError.storeLoadFailed The store could not be loaded: ensure the correct model is being used.
 	internal func initPersistentStoreCoordinator(url : URL) throws {
+		
+		print("initPersist");
 		self.coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel!);
 		if(coordinator == nil) {
 			throw PersistentStoreError.storeCreateFailed
@@ -77,7 +85,17 @@ class PersistentDataSource {
 	}
 	
 	// Initializes the main object context for the master thread.
+	//
+	// @warn This should only ever be used on the master thread.
+	// @throw PersistentStoreError.contextCreateFailed Failed to create the default read/write context.
 	internal func initManagedObjectContext() throws {
-		throw PersistentStoreError.notImplemented;
+		
+		// Create the managed object context
+		self.managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType);
+		if(self.managedObjectContext == nil) {
+			throw PersistentStoreError.contextCreateFailed
+		}
+		
+		self.managedObjectContext?.persistentStoreCoordinator = self.coordinator;
 	}
 }
