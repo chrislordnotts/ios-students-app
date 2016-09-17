@@ -7,12 +7,16 @@
 //
 
 import Foundation
+import CoreData
 
 enum PersistentStoreError: Error {
 	case notImplemented
+	case modelNotFound
 }
 
 class PersistentDataSource {
+	
+	var managedObjectModel : NSManagedObjectModel?;
 
 	// @param storePath The path to manage the data source at.
 	// @param modelName The name of the momd file to use
@@ -24,8 +28,16 @@ class PersistentDataSource {
 	
 	// Initializes the managed object model by loading it from
 	// the main application bundle.
+	//
+	// @throws PersistentStoreError.modelNotFound The model file does not exist in the main application bundle.
 	internal func initManagedObjectModel(modelName : String) throws {
-		throw PeristentStoreError.notImplemented;
+		// Determine if the model exists in the main bundle
+		let url = Bundle.main.url(forResource: modelName, withExtension: "momd")!;
+		if(!FileManager.default.fileExists(atPath: url.path)) {
+			throw PersistentStoreError.modelNotFound;
+		}
+		
+		self.managedObjectModel = NSManagedObjectModel(contentsOf: url);
 	}
 	
 	// Initializes the persistent store - the location CoreData
