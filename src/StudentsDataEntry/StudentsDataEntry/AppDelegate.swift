@@ -13,9 +13,28 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
+	var dataSource : PersistentDataSource?;
 
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+		do {
+			// Connect to the main data source
+			let model = "StudentsDataEntry";
+			let url = self.persistentStoreURL();
+			self.dataSource = try PersistentDataSource(url: url, modelName: model);
+		} catch let error as NSError {
+			#if DEBUG
+				let path = self.persistentStoreURL().path;
+				try! FileManager.default.removeItem(atPath: path);
+			#endif
+			
+			// This indicates that the persistent source could not
+			// be created/used for some reason. This is either bad 
+			// management of model versions or a bad setup.
+			print("Aborting. Error caught during database init: \(error.localizedDescription)");
+			abort();
+		}
+
 		// Override point for customization after application launch.
 		return true
 	}
@@ -42,6 +61,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 		// Saves changes in the application's managed object context before the application terminates.
 		//self.saveContext()
+	}
+	
+	// MARK: - Path Helpers
+	
+	
+	// @return URL pointing to the user document directory.
+	public func persistentStoreURL() -> URL {
+		// This is a generic apple-provided segment for getting the home directory
+		let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+		return urls[urls.count - 1].appendingPathComponent("data.sqlite");
 	}
 }
 
