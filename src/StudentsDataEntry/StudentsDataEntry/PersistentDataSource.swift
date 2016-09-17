@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum PeristentStoreError: Error {
+enum PersistentStoreError: Error {
 	case notImplemented
 }
 
@@ -34,11 +34,11 @@ class PersistentDataSource {
 	// only load the old database - but it will validate that it 
 	// it conforms to the MOMD.
 	internal func initPersistentStoreCoordinator(path : URL) throws {
-		throw PeristentStoreError.notImplemented;
+		throw PersistentStoreError.notImplemented;
 	}
 	
 	// Initializes the main object context for the master thread.
 	internal func initManagedObjectContext() throws {
-		throw PeristentStoreError.notImplemented;
+		throw PersistentStoreError.notImplemented;
 	}
 }
