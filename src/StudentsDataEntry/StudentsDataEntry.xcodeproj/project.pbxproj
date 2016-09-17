@@ -16,6 +16,7 @@
 		9C659DC91D8D376C0099E3F0 /* StudentsDataEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DC81D8D376C0099E3F0 /* StudentsDataEntryTests.swift */; };
 		9C659DD41D8D38E00099E3F0 /* PersistentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */; };
 		9C659DD51D8D3C600099E3F0 /* PersistentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */; };
+		9C659DD71D8D6A880099E3F0 /* NewStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DD61D8D6A880099E3F0 /* NewStudentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		9C659DC81D8D376C0099E3F0 /* StudentsDataEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsDataEntryTests.swift; sourceTree = "<group>"; };
 		9C659DCA1D8D376C0099E3F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentDataSource.swift; sourceTree = "<group>"; };
+		9C659DD61D8D6A880099E3F0 /* NewStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStudentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				9C659DBF1D8D376C0099E3F0 /* Info.plist */,
 				9C659DB71D8D376C0099E3F0 /* StudentsDataEntry.xcdatamodeld */,
 				9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */,
+				9C659DD61D8D6A880099E3F0 /* NewStudentViewController.swift */,
 			);
 			path = StudentsDataEntry;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			files = (
 				9C659DB91D8D376C0099E3F0 /* StudentsDataEntry.xcdatamodeld in Sources */,
 				9C659DD41D8D38E00099E3F0 /* PersistentDataSource.swift in Sources */,
+				9C659DD71D8D6A880099E3F0 /* NewStudentViewController.swift in Sources */,
 				9C659DB31D8D376C0099E3F0 /* ViewController.swift in Sources */,
 				9C659DB11D8D376C0099E3F0 /* AppDelegate.swift in Sources */,
 			);
