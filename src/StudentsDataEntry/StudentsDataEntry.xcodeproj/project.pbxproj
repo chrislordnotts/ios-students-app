@@ -109,8 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				9C05D2481D8E810C005DD9D2 /* Extensions */,
-				9C05D2411D8DBDDC005DD9D2 /* Student+CoreDataClass.swift */,
-				9C05D2421D8DBDDC005DD9D2 /* Student+CoreDataProperties.swift */,
 				9C659DDE1D8D85260099E3F0 /* Resources */,
 				9C659DDD1D8D85110099E3F0 /* Data */,
 				9C659DDC1D8D85010099E3F0 /* View Controllers */,
@@ -145,6 +143,8 @@
 		9C659DDD1D8D85110099E3F0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9C05D2411D8DBDDC005DD9D2 /* Student+CoreDataClass.swift */,
+				9C05D2421D8DBDDC005DD9D2 /* Student+CoreDataProperties.swift */,
 				9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */,
 				9C659DD81D8D82740099E3F0 /* UniversityDataSource.swift */,
 			);
