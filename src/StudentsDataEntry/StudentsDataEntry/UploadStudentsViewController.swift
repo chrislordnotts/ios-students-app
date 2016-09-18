@@ -113,7 +113,6 @@ class UploadStudentsViewController: UIViewController {
 		self.uploadBatchOfStudents(then:{
 			if($0 == nil) {
 				if(Student.hasStudentsToUpload()) {
-					print("Go again!");
 					self.beginUploadingStudents();
 				} else {
 					// We completed successfully

@@ -13,6 +13,8 @@ import UIKit
 class ViewController: UIViewController {
 	@IBOutlet weak var uploadButton : UIButton?;
 	@IBOutlet weak var addStudentButton : UIButton?;
+	@IBOutlet weak var uploadUserImage : UIImageView?;
+	@IBOutlet weak var addUserImage : UIImageView?;
 	
 	override func viewWillAppear(_ animated: Bool) {
 		self.uploadButton?.isEnabled = Student.hasStudentsToUpload()

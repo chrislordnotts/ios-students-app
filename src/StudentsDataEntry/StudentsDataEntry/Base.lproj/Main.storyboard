@@ -39,38 +39,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVo-36-oQZ">
-                                <state key="normal" title="Upload Students"/>
-                                <connections>
-                                    <segue destination="Fac-Hk-LaH" kind="show" id="vfX-KV-r6Q"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk3-1L-ciO">
                                 <state key="normal" title="Add New Student"/>
                                 <connections>
                                     <segue destination="094-tB-onm" kind="show" id="2TE-GC-NFe"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-user-icon" translatesAutoresizingMaskIntoConstraints="NO" id="L5o-UW-7n4">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="oK5-31-jiP"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload-students-icon" translatesAutoresizingMaskIntoConstraints="NO" id="KyK-bF-9Ls">
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="J9D-1a-F51"/>
+                                    <constraint firstAttribute="width" constant="150" id="WBH-qc-r8c"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="DJL-Te-IuN" appends="YES" id="Tbd-fS-ayr"/>
+                                </connections>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVo-36-oQZ">
+                                <state key="normal" title="Upload Students"/>
+                                <connections>
+                                    <segue destination="Fac-Hk-LaH" kind="show" id="vfX-KV-r6Q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="eVo-36-oQZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="79" id="A4g-fU-baI"/>
-                            <constraint firstItem="eVo-36-oQZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="87" id="CJd-O4-p0M"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Hk3-1L-ciO" secondAttribute="trailing" constant="83" id="Inr-K2-H8q"/>
-                            <constraint firstItem="Hk3-1L-ciO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="84" id="Jq2-1g-Tg2"/>
-                            <constraint firstItem="Hk3-1L-ciO" firstAttribute="top" secondItem="eVo-36-oQZ" secondAttribute="bottom" constant="52" id="zJY-JJ-wbZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="eVo-36-oQZ" secondAttribute="trailing" constant="86" id="zSK-np-aMX"/>
+                            <constraint firstItem="KyK-bF-9Ls" firstAttribute="trailing" secondItem="L5o-UW-7n4" secondAttribute="trailing" id="BDa-sn-WbO"/>
+                            <constraint firstItem="eVo-36-oQZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="87" id="Lid-Jp-e7H"/>
+                            <constraint firstItem="Hk3-1L-ciO" firstAttribute="top" secondItem="L5o-UW-7n4" secondAttribute="bottom" constant="8" symbolic="YES" id="M4A-Ga-gcZ"/>
+                            <constraint firstItem="KyK-bF-9Ls" firstAttribute="leading" secondItem="L5o-UW-7n4" secondAttribute="leading" id="May-7m-Ef2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Hk3-1L-ciO" secondAttribute="bottom" constant="122" id="Rpl-jk-pEk"/>
+                            <constraint firstItem="eVo-36-oQZ" firstAttribute="trailing" secondItem="Hk3-1L-ciO" secondAttribute="trailing" id="c52-1R-fNL"/>
+                            <constraint firstItem="KyK-bF-9Ls" firstAttribute="centerX" secondItem="eVo-36-oQZ" secondAttribute="centerX" id="gAN-C5-L59"/>
+                            <constraint firstItem="eVo-36-oQZ" firstAttribute="top" secondItem="KyK-bF-9Ls" secondAttribute="bottom" constant="8" symbolic="YES" id="oK5-Km-In0"/>
+                            <constraint firstItem="KyK-bF-9Ls" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="73" id="ohX-e4-aBK"/>
+                            <constraint firstItem="KyK-bF-9Ls" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r5p-C4-DNq"/>
+                            <constraint firstItem="Hk3-1L-ciO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="81" id="vUc-42-uFD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="UNiDAYS" id="WQ9-1r-cnX"/>
                     <connections>
                         <outlet property="addStudentButton" destination="Hk3-1L-ciO" id="jr1-Ky-jnL"/>
+                        <outlet property="addUserImage" destination="L5o-UW-7n4" id="cpG-EE-aV2"/>
                         <outlet property="uploadButton" destination="eVo-36-oQZ" id="BLi-iO-ICx"/>
+                        <outlet property="uploadUserImage" destination="KyK-bF-9Ls" id="KDs-0z-6eW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DJL-Te-IuN"/>
             </objects>
-            <point key="canvasLocation" x="249" y="243"/>
+            <point key="canvasLocation" x="247.82608695652175" y="242.93478260869568"/>
         </scene>
         <!--Add New Student-->
         <scene sceneID="h9M-Kh-d3A">
@@ -321,7 +344,7 @@
                                 <color key="color" red="0.23921568630000001" green="0.54117647059999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please wait..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXI-Xy-aed">
-                                <frame key="frameInset" minX="144" minY="398" height="21" maxX="147"/>
+                                <frame key="frameInset" minX="144" minY="398" height="21" maxX="149"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.23921568630000001" green="0.54117647059999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -344,7 +367,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add-user-icon" width="256" height="256"/>
         <image name="circle-check-gray" width="400" height="400"/>
         <image name="circle-check-green" width="400" height="400"/>
+        <image name="upload-students-icon" width="256" height="202"/>
     </resources>
 </document>
