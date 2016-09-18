@@ -174,7 +174,7 @@
         <!--Upload Students-->
         <scene sceneID="GIC-ut-8qc">
             <objects>
-                <viewController title="Upload Students" id="Fac-Hk-LaH" customClass="UploadStudentsViewController" sceneMemberID="viewController">
+                <viewController title="Upload Students" id="Fac-Hk-LaH" customClass="UploadStudentsViewController" customModule="StudentsDataEntry" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nE1-ia-0Sz"/>
                         <viewControllerLayoutGuide type="bottom" id="XyL-Or-YXw"/>
