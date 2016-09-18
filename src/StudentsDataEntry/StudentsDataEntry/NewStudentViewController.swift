@@ -78,6 +78,7 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 			
 			do {
 				try managedObjectContext?.save();
+				self.navigationController?.popViewController(animated: true);
 			} catch let error {
 				// This error occurs when the context is used
 				// across multiple threads and it's down to good
