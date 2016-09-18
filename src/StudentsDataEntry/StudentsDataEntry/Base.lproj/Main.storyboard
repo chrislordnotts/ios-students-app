@@ -199,7 +199,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Uploading Students" id="bTt-Uh-iEk">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="LbZ-b0-xkL"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="LbZ-b0-xkL">
+                            <connections>
+                                <action selector="didPressCancelButtonWithSender:" destination="Fac-Hk-LaH" id="9vW-Zb-Udr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WfH-Lf-PcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
