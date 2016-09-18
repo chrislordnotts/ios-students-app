@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C05D2461D8E78E2005DD9D2 /* UniversityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C05D2451D8E78E2005DD9D2 /* UniversityTests.swift */; };
+		9C05D2471D8E7904005DD9D2 /* UniversityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DD81D8D82740099E3F0 /* UniversityDataSource.swift */; };
 		9C659DB11D8D376C0099E3F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DB01D8D376C0099E3F0 /* AppDelegate.swift */; };
 		9C659DB31D8D376C0099E3F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DB21D8D376C0099E3F0 /* ViewController.swift */; };
 		9C659DB61D8D376C0099E3F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C659DB41D8D376C0099E3F0 /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 		9C659DD41D8D38E00099E3F0 /* PersistentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */; };
 		9C659DD51D8D3C600099E3F0 /* PersistentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */; };
 		9C659DD71D8D6A880099E3F0 /* NewStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DD61D8D6A880099E3F0 /* NewStudentViewController.swift */; };
+		9C659DD91D8D82740099E3F0 /* UniversityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DD81D8D82740099E3F0 /* UniversityDataSource.swift */; };
+		9C659DDB1D8D83250099E3F0 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C659DDA1D8D83250099E3F0 /* Config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C05D2451D8E78E2005DD9D2 /* UniversityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityTests.swift; sourceTree = "<group>"; };
 		9C659DAD1D8D376B0099E3F0 /* StudentsDataEntry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentsDataEntry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C659DB01D8D376C0099E3F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C659DB21D8D376C0099E3F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +48,8 @@
 		9C659DCA1D8D376C0099E3F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentDataSource.swift; sourceTree = "<group>"; };
 		9C659DD61D8D6A880099E3F0 /* NewStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStudentViewController.swift; sourceTree = "<group>"; };
+		9C659DD81D8D82740099E3F0 /* UniversityDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityDataSource.swift; sourceTree = "<group>"; };
+		9C659DDA1D8D83250099E3F0 /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +100,7 @@
 				9C659DB71D8D376C0099E3F0 /* StudentsDataEntry.xcdatamodeld */,
 				9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */,
 				9C659DD61D8D6A880099E3F0 /* NewStudentViewController.swift */,
+				9C659DDA1D8D83250099E3F0 /* Config.plist */,
 			);
 			path = StudentsDataEntry;
 			sourceTree = "<group>";
@@ -102,6 +110,7 @@
 			children = (
 				9C659DC81D8D376C0099E3F0 /* StudentsDataEntryTests.swift */,
 				9C659DCA1D8D376C0099E3F0 /* Info.plist */,
+				9C05D2451D8E78E2005DD9D2 /* UniversityTests.swift */,
 			);
 			path = StudentsDataEntryTests;
 			sourceTree = "<group>";
@@ -192,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C659DBE1D8D376C0099E3F0 /* LaunchScreen.storyboard in Resources */,
+				9C659DDB1D8D83250099E3F0 /* Config.plist in Resources */,
 				9C659DBB1D8D376C0099E3F0 /* Assets.xcassets in Resources */,
 				9C659DB61D8D376C0099E3F0 /* Main.storyboard in Resources */,
 			);
@@ -211,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C659DD91D8D82740099E3F0 /* UniversityDataSource.swift in Sources */,
 				9C659DB91D8D376C0099E3F0 /* StudentsDataEntry.xcdatamodeld in Sources */,
 				9C659DD41D8D38E00099E3F0 /* PersistentDataSource.swift in Sources */,
 				9C659DD71D8D6A880099E3F0 /* NewStudentViewController.swift in Sources */,
@@ -223,6 +234,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C05D2471D8E7904005DD9D2 /* UniversityDataSource.swift in Sources */,
+				9C05D2461D8E78E2005DD9D2 /* UniversityTests.swift in Sources */,
 				9C659DC91D8D376C0099E3F0 /* StudentsDataEntryTests.swift in Sources */,
 				9C659DD51D8D3C600099E3F0 /* PersistentDataSource.swift in Sources */,
 			);

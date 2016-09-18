@@ -19,10 +19,20 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	@IBOutlet weak var maleButton : UIButton?;
 	@IBOutlet weak var femaleButton : UIButton?;
 	@IBOutlet weak var saveButton : UIBarButtonItem?;
+	@IBOutlet weak var universityPicker : UIPickerView?;
 	
+	var universityDataSource : UniversityDataSource? = nil;
 	var isMale : Bool = true;
 	
 	// MARK: - UI Events
+	
+	override func viewDidLoad() {
+		self.universityDataSource = UniversityDataSource();
+		self.universityPicker?.dataSource = self.universityDataSource as UIPickerViewDataSource?;
+		self.universityPicker?.delegate = self.universityDataSource as UIPickerViewDelegate?;
+		self.universityPicker!.reloadAllComponents();
+		self.updateGenderUI();
+	}
 	
 	// Event handler for when the user presses the male button
 	@IBAction func didPressMaleButton() {
