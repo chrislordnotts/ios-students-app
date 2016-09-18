@@ -36,25 +36,32 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	
 	// Event handler for when the user presses the male button
 	@IBAction func didPressMaleButton() {
-		print("Did press male button");
+		self.isMale = true;
+		self.view.endEditing(true);
+		
+		// User interface updates
+		self.view.endEditing(true);
+		self.updateGenderUI();
 	}
 	
 	// Event handler for when the user presses the female button
 	@IBAction func didPressFemaleButton() {
-		print("Did press female button");
+		self.isMale = false;
+		
+		// User interface updates
+		self.view.endEditing(true);
+		self.updateGenderUI();
 	}
 	
 	// Event handler for when the save button is pressed
 	@IBAction func didPressSaveButton() {
-		print("Did press save button");
-	}
 	
 	// Event handler for when any text field has changed
 	@IBAction func textFieldValueChanged() {
 		print("Text field changed");
 	}
 	
-	// MARK: - UITextFieldDelete
+	// MARK: - UITextFieldDelegate
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		
@@ -72,4 +79,15 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 		return false;
 	}
 	
+	// MARK: -
+	
+	internal func updateGenderUI() {
+		if isMale {
+			self.maleButton!.setTitleColor(UIColor.green, for: .normal);
+			self.femaleButton!.setTitleColor(UIColor.gray, for: .normal);
+		} else {
+			self.maleButton!.setTitleColor(UIColor.gray, for: .normal);
+			self.femaleButton!.setTitleColor(UIColor.green, for: .normal);
+		}
+	}
 }
