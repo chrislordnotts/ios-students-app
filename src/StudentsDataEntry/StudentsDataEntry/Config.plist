@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Universities</key>
+	<array>
+		<dict>
+			<key>uniqueId</key>
+			<integer>10456</integer>
+			<key>name</key>
+			<string>University of Derby</string>
+		</dict>
+		<dict>
+			<key>uniqueId</key>
+			<integer>12459</integer>
+			<key>name</key>
+			<string>University of Birmingham</string>
+		</dict>
+		<dict>
+			<key>uniqueId</key>
+			<real>10100</real>
+			<key>name</key>
+			<string>University of Nottingham</string>
+		</dict>
+		<dict>
+			<key>uniqueId</key>
+			<integer>100</integer>
+			<key>name</key>
+			<string>Imperial College London</string>
+		</dict>
+		<dict>
+			<key>uniqueId</key>
+			<integer>101</integer>
+			<key>name</key>
+			<string>University College London</string>
+		</dict>
+		<dict>
+			<key>uniqueId</key>
+			<integer>130</integer>
+			<key>name</key>
+			<string>University of Liverpool</string>
+		</dict>
+	</array>
+</dict>
+</plist>
