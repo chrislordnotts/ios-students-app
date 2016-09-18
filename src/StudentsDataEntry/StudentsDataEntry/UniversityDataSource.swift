@@ -31,10 +31,12 @@ class UniversityDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDelega
 		super.init();
 	}
 	
+	// @return True if the data source was successfully loaded.
 	func isAvailable() -> Bool {
 		return self.universities != nil;
 	}
 	
+	// @return The raw NSDictionary of the university currently selected.
 	func selectedUniversity() -> NSDictionary {
 		return self.universities![self.selectedIndex];
 	}
@@ -70,8 +72,8 @@ class UniversityDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDelega
 		}
 	}
 	
+	// Keep track of the currently selected index
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		self.selectedIndex = row
-		print(self.selectedIndex);
 	}
 }

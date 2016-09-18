@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 import CoreData
 
-// Manages the data entry view controller for adding new students.
+//
+// The new student view controller allows the user to enter some information
+// about a student and have the record stored permanently in Core Data - until
+// it is uploaded that is.
+//
 class NewStudentViewController: ViewController, UITextFieldDelegate {
 	
 	@IBOutlet weak var firstNameField : UITextField?;
