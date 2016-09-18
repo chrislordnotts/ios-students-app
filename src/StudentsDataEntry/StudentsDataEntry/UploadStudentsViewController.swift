@@ -127,17 +127,15 @@ class UploadStudentsViewController: UIViewController {
 			} else {
 				// Present an error informing the user the upload failed at this time
 				let alert : UIAlertController = UIAlertController(title: "Upload Failed", message: "Sorry, a problem was encountered while uploading studing data. Please try again later. You have not lost any data.", preferredStyle: .alert);
-				let dismiss : UIAlertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil);
+				let dismiss : UIAlertAction = UIAlertAction(title: "Dismiss", style: .default, handler: {(_ : UIAlertAction) in
+					_ = self.navigationController?.popViewController(animated: true);
+				});
 				alert.addAction(dismiss);
 				self.present(alert, animated: true, completion: nil);
-				_ = self.navigationController?.popViewController(animated: true);
 			}
 		});
 	}
-	
-	internal func cancelUploadingStudents() {
-	}
-	
+
 
 	// When the view appears, we will begin the upload of users
 	// on the local disk.
@@ -149,6 +147,8 @@ class UploadStudentsViewController: UIViewController {
 	
 	// Pressing the close button should cancel any asynchronous activity
 	@IBAction func didPressCancelButton(sender : UIBarButtonItem) {
-		
+		if(self.uploadTask != nil) {
+			self.uploadTask!.cancel();
+		}
 	}
 }
