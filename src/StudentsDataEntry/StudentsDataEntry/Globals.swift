@@ -8,9 +8,8 @@
 
 import Foundation
 
-
 class Globals {
 	public static let JSONContentType = "application/json"
 	public static let StudentsUploadEndpoint = "https://posttestserver.com/post.php"
-	public static let NumberOfStudentsPerUpload = 1;
+	public static let NumberOfStudentsPerUpload = 200;
 }

@@ -17,7 +17,18 @@ class ViewController: UIViewController {
 	@IBOutlet weak var addUserImage : UIImageView?;
 	
 	override func viewWillAppear(_ animated: Bool) {
-		self.uploadButton?.isEnabled = Student.hasStudentsToUpload()
+		let studentsCount = Student.numberOfPendingStudents();
+		if(studentsCount > 0) {
+			self.uploadUserImage?.image = UIImage(named: "upload-students-icon");
+			self.uploadUserImage?.isUserInteractionEnabled = true;
+			self.uploadButton?.isEnabled = true;
+			self.uploadButton?.setTitle("Upload \(studentsCount) Students", for: .normal);
+		} else {
+			self.uploadUserImage?.image = UIImage(named: "upload-students-icon-disabled");
+			self.uploadUserImage?.isUserInteractionEnabled = false;
+			self.uploadButton?.isEnabled = false;
+			self.uploadButton?.setTitle("No Data", for: .normal);
+		}
 	}
 	
 }

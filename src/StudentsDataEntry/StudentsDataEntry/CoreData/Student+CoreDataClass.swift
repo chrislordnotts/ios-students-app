@@ -14,7 +14,7 @@ public class Student: NSManagedObject {
 	
 	// Uses the shared managed object context.
 	// Returns true if there are more students to upload
-	public static func hasStudentsToUpload() -> Bool {
+	public static func numberOfPendingStudents() -> Int {
 		let appDelegate = UIApplication.shared.delegate as! AppDelegate;
 		let managedObjectContext = appDelegate.dataSource!.managedObjectContext;
 		
@@ -27,13 +27,12 @@ public class Student: NSManagedObject {
 		request.entity = entity;
 		
 		do {
-			let count = try managedObjectContext!.count(for: request);
-			return count > 0;
+			return try managedObjectContext!.count(for: request);
 		} catch _ {
 			// This is an error only a developer is likely to encounter
 			// returning true incorrectly will fail the user tests, yet
 			// still keep the users application syncable.
-			return true;
+			return -1;
 		}
 	}
 	
@@ -49,5 +48,18 @@ public class Student: NSManagedObject {
 		request.fetchLimit = max;
 		
 		return try! managedObjectContext!.fetch(request) as! [Student]
+	}
+	
+	// Create a new user
+	public static func create(firstName: String, lastName: String, email: String, isMale : Bool, universityId: Int64, context: NSManagedObjectContext) -> Student {
+		let entity = NSEntityDescription.entity(forEntityName: "Student", in: context);
+		let student = Student(entity: entity!, insertInto: context);
+		student.firstName = firstName;
+		student.lastName = lastName;
+		student.email = email;
+		student.universityId = universityId;
+		student.isMale = isMale;
+		student.recordId = NSUUID().uuidString;
+		return student;
 	}
 }

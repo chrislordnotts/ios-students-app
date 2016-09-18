@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import UIKit
+
+class AppViewController : UINavigationController {
+	open override var shouldAutorotate: Bool {
+		get {
+			return false
+		}
+	}
+}
