@@ -16,6 +16,8 @@
 		9C05D2501D8E835F005DD9D2 /* DependencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C05D24F1D8E835F005DD9D2 /* DependencyTests.swift */; };
 		9C05D2521D8E99A4005DD9D2 /* UploadStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C05D2511D8E99A4005DD9D2 /* UploadStudentsViewController.swift */; };
 		9C05D2531D8E99A4005DD9D2 /* UploadStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C05D2511D8E99A4005DD9D2 /* UploadStudentsViewController.swift */; };
+		9C05D2551D8EB709005DD9D2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C05D2541D8EB709005DD9D2 /* Globals.swift */; };
+		9C05D2561D8EB709005DD9D2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C05D2541D8EB709005DD9D2 /* Globals.swift */; };
 		9C659DB11D8D376C0099E3F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DB01D8D376C0099E3F0 /* AppDelegate.swift */; };
 		9C659DB31D8D376C0099E3F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DB21D8D376C0099E3F0 /* ViewController.swift */; };
 		9C659DB61D8D376C0099E3F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C659DB41D8D376C0099E3F0 /* Main.storyboard */; };
@@ -47,6 +49,7 @@
 		9C05D2491D8E812B005DD9D2 /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		9C05D24F1D8E835F005DD9D2 /* DependencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DependencyTests.swift; path = ../DependencyTests.swift; sourceTree = "<group>"; };
 		9C05D2511D8E99A4005DD9D2 /* UploadStudentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadStudentsViewController.swift; sourceTree = "<group>"; };
+		9C05D2541D8EB709005DD9D2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		9C659DAD1D8D376B0099E3F0 /* StudentsDataEntry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentsDataEntry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C659DB01D8D376C0099E3F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C659DB21D8D376C0099E3F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 		9C659DDD1D8D85110099E3F0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9C05D2541D8EB709005DD9D2 /* Globals.swift */,
 				9C05D2411D8DBDDC005DD9D2 /* Student+CoreDataClass.swift */,
 				9C05D2421D8DBDDC005DD9D2 /* Student+CoreDataProperties.swift */,
 				9C659DD31D8D38E00099E3F0 /* PersistentDataSource.swift */,
@@ -276,6 +280,7 @@
 				9C05D2441D8DBDDC005DD9D2 /* Student+CoreDataProperties.swift in Sources */,
 				9C659DD41D8D38E00099E3F0 /* PersistentDataSource.swift in Sources */,
 				9C05D24A1D8E812B005DD9D2 /* StringExt.swift in Sources */,
+				9C05D2551D8EB709005DD9D2 /* Globals.swift in Sources */,
 				9C05D2431D8DBDDC005DD9D2 /* Student+CoreDataClass.swift in Sources */,
 				9C659DD71D8D6A880099E3F0 /* NewStudentViewController.swift in Sources */,
 				9C05D2521D8E99A4005DD9D2 /* UploadStudentsViewController.swift in Sources */,
@@ -292,6 +297,7 @@
 				9C05D2461D8E78E2005DD9D2 /* UniversityTests.swift in Sources */,
 				9C05D2501D8E835F005DD9D2 /* DependencyTests.swift in Sources */,
 				9C659DC91D8D376C0099E3F0 /* StudentsDataEntryTests.swift in Sources */,
+				9C05D2561D8EB709005DD9D2 /* Globals.swift in Sources */,
 				9C659DD51D8D3C600099E3F0 /* PersistentDataSource.swift in Sources */,
 				9C05D2531D8E99A4005DD9D2 /* UploadStudentsViewController.swift in Sources */,
 				9C05D24B1D8E812B005DD9D2 /* StringExt.swift in Sources */,

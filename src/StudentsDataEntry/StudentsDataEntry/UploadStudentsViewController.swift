@@ -21,8 +21,6 @@ class UploadStudentsViewController: UIViewController {
 		let entity = NSEntityDescription.entity(forEntityName: "Student", in: managedObjectContext!);
 		request.entity = entity;
 		
-		
-		
 		do {
 			var serializableOut : Array<Dictionary<String, String>> = [];
 			
@@ -47,14 +45,34 @@ class UploadStudentsViewController: UIViewController {
 				serializableOut.append(dictionary)
 			}
 			
+			// Turn the students into a JSON - represented by `Data` object
 			let json = try JSONSerialization.data(withJSONObject: serializableOut, options: .prettyPrinted);
-			print(json);
+			
+			// Setup the request to the server
+			var request = NSMutableURLRequest();
+			request.url = URL(string: Globals.StudentsUploadEndpoint);
+			request.httpMethod = "POST";
+			request.cachePolicy = .reloadIgnoringLocalCacheData;
+			request.setValue(Globals.JSONContentType, forHTTPHeaderField: "Content-Type");
+			request.httpBody = json;
+
+			// Create the data session task that will perform our request
+			let config = URLSessionConfiguration.default;
+			let session = URLSession(configuration: config)
+			let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
+				// The request has finished
+				print(error);
+				print(response);
+				print(data);
+			});
+			
+			task.resume();
 		} catch _ {
-			print("Query failed.");
+			print("Fatal. Database Query Failed.");
+			_ = self.navigationController?.popViewController(animated: true);
 			
 		}
-//		if let result = managedObjectContext.
-		
+
 		super.viewDidAppear(animated);
 	}
 }
