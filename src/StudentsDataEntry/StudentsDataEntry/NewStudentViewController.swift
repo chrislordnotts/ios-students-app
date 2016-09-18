@@ -15,7 +15,6 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	
 	@IBOutlet weak var firstNameField : UITextField?;
 	@IBOutlet weak var lastNameField : UITextField?;
-	@IBOutlet weak var universityNameField : UITextField?;
 	@IBOutlet weak var emailField : UITextField?;
 	@IBOutlet weak var maleButton : UIButton?;
 	@IBOutlet weak var femaleButton : UIButton?;
@@ -118,6 +117,8 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 
 	// MARK: - Form validation by component
 	
+	// Updates the look of the gender buttons based on the 
+	// current value of self.isMale
 	internal func updateGenderUI() {
 		if isMale {
 			self.maleButton!.setTitleColor(UIColor.green, for: .normal);
@@ -128,6 +129,10 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 		}
 	}
 	
+	// If the users first name field is empty then this method
+	// will highlight it in red, make it the first responder and
+	// then return false. If returning true, then the first name
+	// field contains a valid name.
 	internal func validateFirstName() -> Bool {
 		self.firstNameField?.borderStyle = .roundedRect;
 		self.firstNameField?.layer.borderWidth = 1.0;
@@ -145,6 +150,10 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 		}
 	}
 	
+	// If the users last name field is empty then this method
+	// should highlight it, make it the first responder and let
+	// the caller know by returning false. If this method returns
+	// true then the last name contains a valid name.
 	internal func validateLastName() -> Bool {
 		self.lastNameField?.borderStyle = .roundedRect;
 		self.lastNameField?.layer.borderWidth = 1.0;
@@ -162,6 +171,9 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 		}
 	}
 	
+	// Checks to see if the enterered email address
+	// is valid or not. It will highlight an invalid
+	// email as well as making it the first responder.
 	internal func validateEmail() -> Bool {
 		self.emailField?.borderStyle = .roundedRect;
 		self.emailField?.layer.borderWidth = 1.0;
