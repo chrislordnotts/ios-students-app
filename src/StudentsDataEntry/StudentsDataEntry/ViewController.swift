@@ -11,5 +11,12 @@ import UIKit
 // This view controller is completely automated
 // via the main storyboard.
 class ViewController: UIViewController {
+	@IBOutlet weak var uploadButton : UIButton?;
+	@IBOutlet weak var addStudentButton : UIButton?;
+	
+	override func viewWillAppear(_ animated: Bool) {
+		self.uploadButton?.isEnabled = Student.hasStudentsToUpload()
+	}
+	
 }
 

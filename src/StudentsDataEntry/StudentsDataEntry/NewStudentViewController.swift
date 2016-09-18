@@ -24,6 +24,11 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	@IBOutlet weak var femaleButton : UIButton?;
 	@IBOutlet weak var saveButton : UIBarButtonItem?;
 	@IBOutlet weak var universityPicker : UIPickerView?;
+	@IBOutlet weak var maleIndicatorImage : UIImageView?;
+	@IBOutlet weak var femaleIndicatorImage : UIImageView?;
+	@IBOutlet weak var emailErrorLabel : UILabel?;
+	@IBOutlet weak var firstNameErrorLabel : UILabel?;
+	@IBOutlet weak var lastNameErrorLabel : UILabel?;
 	
 	var universityDataSource : UniversityDataSource? = nil;
 	var isMale : Bool = true;
@@ -61,26 +66,21 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	@IBAction func didPressSaveButton() {
 		
 		if(self.validate()) {
-			// Create a new Student object
-			let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-			let managedObjectContext = appDelegate.dataSource!.managedObjectContext;
-			let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: managedObjectContext!) as! Student
-			
+			// Fetch the information required to create a new student record
 			let university : NSDictionary = (self.universityDataSource?.selectedUniversity())!;
-			
-			// Adopt values from the UI
-			student.isMale = self.isMale;
-			student.firstName = self.firstNameField!.text;
-			student.lastName = self.lastNameField!.text;
-			student.email = self.emailField!.text;
-			student.recordId = NSUUID().uuidString;
-			
-			// Convert the university objects uniqueId from an NSNumber to Int64
 			let universityId : NSNumber = university.object(forKey: "uniqueId") as! NSNumber;
-			student.universityId = universityId.int64Value;
+			let firstName = self.firstNameField!.text!;
+			let lastName = self.lastNameField!.text!;
+			let email = self.emailField!.text!;
+			let isMale = self.isMale;
 			
+			// Create a student on the main thread context
+			let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+			let managedObjectContext = appDelegate.dataSource!.managedObjectContext!;
+			_ = Student.create(firstName: firstName, lastName: lastName, email: email, isMale: isMale, universityId: universityId.int64Value, context: managedObjectContext);
+		
 			do {
-				try managedObjectContext?.save();
+				try managedObjectContext.save();
 				_ = self.navigationController?.popViewController(animated: true);
 			} catch let error {
 				// This error occurs when the context is used
@@ -116,6 +116,25 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 			textField.resignFirstResponder();
 		}
 		
+		
+		switch(textField.tag) {
+		case 0:
+			_ = self.validateFirstName();
+			break;
+			
+		case 1:
+			_ = self.validateLastName();
+			break;
+			
+		case 2:
+			_ = self.validateEmail();
+			break;
+			
+		default:
+			// Do nothing..
+			break;
+		}
+		
 		return false;
 	}
 
@@ -124,12 +143,18 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	// Updates the look of the gender buttons based on the 
 	// current value of self.isMale
 	internal func updateGenderUI() {
+		
 		if isMale {
 			self.maleButton!.setTitleColor(UIColor.green, for: .normal);
 			self.femaleButton!.setTitleColor(UIColor.gray, for: .normal);
+			
+			self.maleIndicatorImage!.image = UIImage(named: "circle-check-green");
+			self.femaleIndicatorImage!.image = UIImage(named: "circle-check-gray");
 		} else {
 			self.maleButton!.setTitleColor(UIColor.gray, for: .normal);
 			self.femaleButton!.setTitleColor(UIColor.green, for: .normal);
+			self.maleIndicatorImage!.image = UIImage(named: "circle-check-gray");
+			self.femaleIndicatorImage!.image = UIImage(named: "circle-check-green");
 		}
 	}
 	
@@ -140,11 +165,14 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	internal func validateFirstName() -> Bool {
 		self.firstNameField?.borderStyle = .roundedRect;
 		self.firstNameField?.layer.borderWidth = 1.0;
+		self.firstNameErrorLabel?.isHidden = true;
 		
 		// Validate the users first name
 		let firstName = self.firstNameField!.text!
 		if(firstName.characters.count == 0) {
 			// There is no text here at the moment
+			self.firstNameErrorLabel?.text = "cannot be empty";
+			self.firstNameErrorLabel?.isHidden = false;
 			self.firstNameField?.layer.borderColor = UIColor.red.cgColor
 			self.firstNameField?.becomeFirstResponder()
 			return false
@@ -161,11 +189,14 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	internal func validateLastName() -> Bool {
 		self.lastNameField?.borderStyle = .roundedRect;
 		self.lastNameField?.layer.borderWidth = 1.0;
+		self.lastNameErrorLabel?.isHidden = true;
 		
 		// Validate the users last name
 		let lastName = self.lastNameField!.text!
 		if(lastName.characters.count == 0) {
 			// There is no text here at the moment
+			self.lastNameErrorLabel?.text = "cannot be empty";
+			self.lastNameErrorLabel?.isHidden = false;
 			self.lastNameField?.layer.borderColor = UIColor.red.cgColor
 			self.lastNameField?.becomeFirstResponder()
 			return false
@@ -181,21 +212,26 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	internal func validateEmail() -> Bool {
 		self.emailField?.borderStyle = .roundedRect;
 		self.emailField?.layer.borderWidth = 1.0;
+		self.emailErrorLabel?.isHidden = true;
 
 		// Validate the email address field
 		let email = self.emailField!.text!
 		if(email.characters.count == 0) {
 			// There is no text here at the moment
+			self.emailErrorLabel?.text = "cannot be empty";
+			self.emailErrorLabel?.isHidden = false;
 			self.emailField?.layer.borderColor = UIColor.red.cgColor
 			self.emailField?.becomeFirstResponder()
 			return false
 		} else {
 			if(email.isValidEmail()) {
 				// We have text and it is valid
-				self.emailField?.layer.borderColor = UIColor.gray.cgColor
+				self.emailField?.layer.borderColor = UIColor.green.cgColor
 				return true
 			} else {
 				// We have text and it is not valid
+				self.emailErrorLabel?.text = "not a valid email";
+				self.emailErrorLabel?.isHidden = false;
 				self.emailField?.layer.borderColor = UIColor.red.cgColor
 				self.emailField?.becomeFirstResponder()
 				return false

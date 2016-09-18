@@ -18,6 +18,7 @@
 		9C05D2531D8E99A4005DD9D2 /* UploadStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C05D2511D8E99A4005DD9D2 /* UploadStudentsViewController.swift */; };
 		9C05D2551D8EB709005DD9D2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C05D2541D8EB709005DD9D2 /* Globals.swift */; };
 		9C05D2561D8EB709005DD9D2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C05D2541D8EB709005DD9D2 /* Globals.swift */; };
+		9C05D2591D8EE072005DD9D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DB01D8D376C0099E3F0 /* AppDelegate.swift */; };
 		9C659DB11D8D376C0099E3F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DB01D8D376C0099E3F0 /* AppDelegate.swift */; };
 		9C659DB31D8D376C0099E3F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C659DB21D8D376C0099E3F0 /* ViewController.swift */; };
 		9C659DB61D8D376C0099E3F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C659DB41D8D376C0099E3F0 /* Main.storyboard */; };
@@ -50,7 +51,7 @@
 		9C05D24F1D8E835F005DD9D2 /* DependencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DependencyTests.swift; path = ../DependencyTests.swift; sourceTree = "<group>"; };
 		9C05D2511D8E99A4005DD9D2 /* UploadStudentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadStudentsViewController.swift; sourceTree = "<group>"; };
 		9C05D2541D8EB709005DD9D2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
-		9C659DAD1D8D376B0099E3F0 /* StudentsDataEntry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentsDataEntry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C659DAD1D8D376B0099E3F0 /* Students.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Students.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C659DB01D8D376C0099E3F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C659DB21D8D376C0099E3F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9C659DB51D8D376C0099E3F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,7 +106,7 @@
 		9C659DAE1D8D376B0099E3F0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C659DAD1D8D376B0099E3F0 /* StudentsDataEntry.app */,
+				9C659DAD1D8D376B0099E3F0 /* Students.app */,
 				9C659DC41D8D376C0099E3F0 /* StudentsDataEntryTests.xctest */,
 			);
 			name = Products;
@@ -186,7 +187,7 @@
 			);
 			name = StudentsDataEntry;
 			productName = StudentsDataEntry;
-			productReference = 9C659DAD1D8D376B0099E3F0 /* StudentsDataEntry.app */;
+			productReference = 9C659DAD1D8D376B0099E3F0 /* Students.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9C659DC31D8D376C0099E3F0 /* StudentsDataEntryTests */ = {
@@ -296,6 +297,7 @@
 				9C05D2471D8E7904005DD9D2 /* UniversityDataSource.swift in Sources */,
 				9C05D2461D8E78E2005DD9D2 /* UniversityTests.swift in Sources */,
 				9C05D2501D8E835F005DD9D2 /* DependencyTests.swift in Sources */,
+				9C05D2591D8EE072005DD9D2 /* AppDelegate.swift in Sources */,
 				9C659DC91D8D376C0099E3F0 /* StudentsDataEntryTests.swift in Sources */,
 				9C05D2561D8EB709005DD9D2 /* Globals.swift in Sources */,
 				9C659DD51D8D3C600099E3F0 /* PersistentDataSource.swift in Sources */,
@@ -435,7 +437,7 @@
 				INFOPLIST_FILE = StudentsDataEntry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.conkergroup.StudentsDataEntry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Students;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -448,7 +450,7 @@
 				INFOPLIST_FILE = StudentsDataEntry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.conkergroup.StudentsDataEntry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Students;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
