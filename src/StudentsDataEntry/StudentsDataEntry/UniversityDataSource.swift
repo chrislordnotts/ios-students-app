@@ -11,6 +11,7 @@ import UIKit
 
 class UniversityDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
 	var universities : Array<NSDictionary>?;
+	var selectedIndex = 0;
 	
 	// Reads a static configuration file containing a list
 	// of universities and loads it for enumeration.
@@ -30,9 +31,12 @@ class UniversityDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDelega
 		super.init();
 	}
 	
-	
 	func isAvailable() -> Bool {
 		return self.universities != nil;
+	}
+	
+	func selectedUniversity() -> NSDictionary {
+		return self.universities![self.selectedIndex];
 	}
 	
 	// MARK: - UIPickerViewDataSource
@@ -64,5 +68,10 @@ class UniversityDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDelega
 			// This shouldn't happen
 			return "#badvalue";
 		}
+	}
+	
+	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+		self.selectedIndex = row
+		print(self.selectedIndex);
 	}
 }

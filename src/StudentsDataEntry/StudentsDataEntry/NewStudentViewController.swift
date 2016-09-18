@@ -63,6 +63,8 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 			let managedObjectContext = appDelegate.dataSource!.managedObjectContext;
 			let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: managedObjectContext!) as! Student
 			
+			let university : NSDictionary = (self.universityDataSource?.selectedUniversity())!;
+			
 			// Adopt values from the UI
 			student.isMale = self.isMale;
 			student.firstName = self.firstNameField!.text;
@@ -70,7 +72,9 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 			student.email = self.emailField!.text;
 			student.recordId = NSUUID().uuidString;
 			
-			print(student);
+			// Convert the university objects uniqueId from an NSNumber to Int64
+			let universityId : NSNumber = university.object(forKey: "uniqueId") as! NSNumber;
+			student.universityId = universityId.int64Value;
 			
 			do {
 				try managedObjectContext?.save();
