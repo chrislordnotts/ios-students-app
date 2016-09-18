@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 // Manages the data entry view controller for adding new students.
 class NewStudentViewController: ViewController, UITextFieldDelegate {
@@ -55,10 +56,41 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	
 	// Event handler for when the save button is pressed
 	@IBAction func didPressSaveButton() {
-	
-	// Event handler for when any text field has changed
-	@IBAction func textFieldValueChanged() {
-		print("Text field changed");
+		
+		if(self.validate()) {
+			// Create a new Student object
+			let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+			let managedObjectContext = appDelegate.dataSource!.managedObjectContext;
+			let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: managedObjectContext!) as! Student
+			
+			// Adopt values from the UI
+			student.isMale = self.isMale;
+			student.firstName = self.firstNameField!.text;
+			student.lastName = self.lastNameField!.text;
+			student.email = self.emailField!.text;
+			student.recordId = NSUUID().uuidString;
+			
+			print(student);
+			
+			do {
+				try managedObjectContext?.save();
+			} catch let error {
+				// This error occurs when the context is used
+				// across multiple threads and it's down to good
+				// thread hygene to prevent this.
+				print("Failed to save: \(error.localizedDescription)");
+				let alert : UIAlertController = UIAlertController(title: "Failed to Save", message: "Internal Database Error - please cancel and try again.", preferredStyle: .alert);
+				let dismiss : UIAlertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil);
+				alert.addAction(dismiss);
+				self.present(alert, animated: true, completion: nil);
+			}
+		} else {
+			// Present an error informing the user they need to address the form
+			let alert : UIAlertController = UIAlertController(title: "Oops", message: "You need to fill out all fields correctly before you can save.", preferredStyle: .alert);
+			let dismiss : UIAlertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil);
+			alert.addAction(dismiss);
+			self.present(alert, animated: true, completion: nil);
+		}
 	}
 	
 	// MARK: - UITextFieldDelegate
@@ -78,8 +110,8 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 		
 		return false;
 	}
-	
-	// MARK: -
+
+	// MARK: - Form validation by component
 	
 	internal func updateGenderUI() {
 		if isMale {
@@ -89,5 +121,76 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 			self.maleButton!.setTitleColor(UIColor.gray, for: .normal);
 			self.femaleButton!.setTitleColor(UIColor.green, for: .normal);
 		}
+	}
+	
+	internal func validateFirstName() -> Bool {
+		self.firstNameField?.borderStyle = .roundedRect;
+		self.firstNameField?.layer.borderWidth = 1.0;
+		
+		// Validate the users first name
+		let firstName = self.firstNameField!.text!
+		if(firstName.characters.count == 0) {
+			// There is no text here at the moment
+			self.firstNameField?.layer.borderColor = UIColor.red.cgColor
+			self.firstNameField?.becomeFirstResponder()
+			return false
+		} else {
+			self.firstNameField?.layer.borderColor = UIColor.green.cgColor
+			return true
+		}
+	}
+	
+	internal func validateLastName() -> Bool {
+		self.lastNameField?.borderStyle = .roundedRect;
+		self.lastNameField?.layer.borderWidth = 1.0;
+		
+		// Validate the users last name
+		let lastName = self.lastNameField!.text!
+		if(lastName.characters.count == 0) {
+			// There is no text here at the moment
+			self.lastNameField?.layer.borderColor = UIColor.red.cgColor
+			self.lastNameField?.becomeFirstResponder()
+			return false
+		} else {
+			self.lastNameField?.layer.borderColor = UIColor.green.cgColor
+			return true
+		}
+	}
+	
+	internal func validateEmail() -> Bool {
+		self.emailField?.borderStyle = .roundedRect;
+		self.emailField?.layer.borderWidth = 1.0;
+
+		// Validate the email address field
+		let email = self.emailField!.text!
+		if(email.characters.count == 0) {
+			// There is no text here at the moment
+			self.emailField?.layer.borderColor = UIColor.red.cgColor
+			self.emailField?.becomeFirstResponder()
+			return false
+		} else {
+			if(email.isValidEmail()) {
+				// We have text and it is valid
+				self.emailField?.layer.borderColor = UIColor.gray.cgColor
+				return true
+			} else {
+				// We have text and it is not valid
+				self.emailField?.layer.borderColor = UIColor.red.cgColor
+				self.emailField?.becomeFirstResponder()
+				return false
+			}
+		}
+	}
+	
+	// Manually checks the contents of each form field to ensure
+	// that valid input has been entered.
+	//
+	// @return false if incomplete/invalid
+	internal func validate() -> Bool {
+		if self.validateFirstName() && self.validateLastName() && self.validateEmail() {
+			return true;
+		}
+		
+		return false;
 	}
 }
