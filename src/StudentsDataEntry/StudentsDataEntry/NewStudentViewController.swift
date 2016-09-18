@@ -103,20 +103,7 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 	
 	// MARK: - UITextFieldDelegate
 	
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		
-		// Each element on the interface has a meta field called 'tag'.
-		// This tag allows us to manually select which element should
-		// be focused next.
-		let nextTag = textField.tag + 1;
-		let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder!
-		if(nextResponder != nil) {
-			nextResponder?.becomeFirstResponder();
-		} else {
-			textField.resignFirstResponder();
-		}
-		
-		
+	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
 		switch(textField.tag) {
 		case 0:
 			_ = self.validateFirstName();
@@ -135,7 +122,23 @@ class NewStudentViewController: ViewController, UITextFieldDelegate {
 			break;
 		}
 		
-		return false;
+		return true;
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		
+		// Each element on the interface has a meta field called 'tag'.
+		// This tag allows us to manually select which element should
+		// be focused next.
+		let nextTag = textField.tag + 1;
+		let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder!
+		if(nextResponder != nil) {
+			nextResponder?.becomeFirstResponder();
+		} else {
+			textField.resignFirstResponder();
+		}
+		
+		return true;
 	}
 
 	// MARK: - Form validation by component
