@@ -49,7 +49,7 @@ class UploadStudentsViewController: UIViewController {
 			let json = try JSONSerialization.data(withJSONObject: serializableOut, options: .prettyPrinted);
 			
 			// Setup the request to the server
-			var request = NSMutableURLRequest();
+			let request = NSMutableURLRequest();
 			request.url = URL(string: Globals.StudentsUploadEndpoint);
 			request.httpMethod = "POST";
 			request.cachePolicy = .reloadIgnoringLocalCacheData;
@@ -60,17 +60,64 @@ class UploadStudentsViewController: UIViewController {
 			let config = URLSessionConfiguration.default;
 			let session = URLSession(configuration: config)
 			let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
-				// The request has finished
-				print(error);
-				print(response);
-				print(data);
+
+				if(error != nil) {
+					// Present an error informing the user the upload failed at this time
+					let alert : UIAlertController = UIAlertController(title: "Upload Failed", message: "Sorry, a problem was encountered while uploading studing data. Please try again later. You have not lost any data.", preferredStyle: .alert);
+					let dismiss : UIAlertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil);
+					alert.addAction(dismiss);
+					self.present(alert, animated: true, completion: nil);
+					_ = self.navigationController?.popViewController(animated: true);
+				} else {
+					// Cast the response to a HTTPURLResponse to get the status code
+					let httpResponse : HTTPURLResponse = response as! HTTPURLResponse;
+					if(httpResponse.statusCode == 200) {
+						
+						// Now we can clear out the database
+						// by iterating over each student
+						for index in 0..<results.count {
+							let student = results[index];
+							managedObjectContext!.delete(student);
+						}
+						
+						do {
+							try managedObjectContext!.save();
+							
+							// We've finished - tell the user this
+							let alert : UIAlertController = UIAlertController(title: "Upload Complete", message: "Your data has been uploaded to the server.", preferredStyle: .alert);
+							let dismiss : UIAlertAction = UIAlertAction(title: "Dismiss", style: .default, handler: {(_ : UIAlertAction) in
+								_ = self.navigationController?.popViewController(animated: true);
+							});
+							alert.addAction(dismiss);
+							self.present(alert, animated: true, completion: nil);
+							
+						} catch _ {
+							// This error is fatal - solutions for this part typically revolve around
+							let alert : UIAlertController = UIAlertController(title: "Failed To Clear", message: "Local data could not be cleaned. Will try again next time.", preferredStyle: .alert);
+							let dismiss : UIAlertAction = UIAlertAction(title: "Dismiss", style: .default, handler: {(_ : UIAlertAction) in
+								_ = self.navigationController?.popViewController(animated: true);
+							});
+							alert.addAction(dismiss);
+							self.present(alert, animated: true, completion: nil);
+						}
+						
+					} else {
+						// Present an error informing the user the upload failed at this time
+						let alert : UIAlertController = UIAlertController(title: "Upload Failed", message: "The server encountered an issue. Please try again later. You have not lost any data.", preferredStyle: .alert);
+						let dismiss : UIAlertAction = UIAlertAction(title: "Dismiss", style: .default, handler: {(_ : UIAlertAction) in
+							_ = self.navigationController?.popViewController(animated: true);
+						});
+						alert.addAction(dismiss);
+						self.present(alert, animated: true, completion: nil);
+					}
+				}
 			});
 			
 			task.resume();
 		} catch _ {
+			// This is caused by misconfiguration
 			print("Fatal. Database Query Failed.");
 			_ = self.navigationController?.popViewController(animated: true);
-			
 		}
 
 		super.viewDidAppear(animated);
