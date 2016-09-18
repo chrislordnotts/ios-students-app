@@ -8,8 +8,46 @@
 
 import Foundation
 import CoreData
-
+import UIKit
 
 public class Student: NSManagedObject {
-
+	
+	// Uses the shared managed object context.
+	// Returns true if there are more students to upload
+	public static func hasStudentsToUpload() -> Bool {
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+		let managedObjectContext = appDelegate.dataSource!.managedObjectContext;
+		
+		// Create a fetch request and set any options
+		let request = NSFetchRequest<NSFetchRequestResult>();
+		request.includesSubentities = false;
+		
+		// Assign the entity descriptor
+		let entity = NSEntityDescription.entity(forEntityName: "Student", in: managedObjectContext!);
+		request.entity = entity;
+		
+		do {
+			let count = try managedObjectContext!.count(for: request);
+			return count > 0;
+		} catch _ {
+			// This is an error only a developer is likely to encounter
+			// returning true incorrectly will fail the user tests, yet
+			// still keep the users application syncable.
+			return true;
+		}
+	}
+	
+	// Loads a set number of Student entities from Core Data
+	public static func loadStudents(max : Int) -> Array<Student> {
+		// Begin the synchronisation process
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+		let managedObjectContext = appDelegate.dataSource!.managedObjectContext;
+		let request = NSFetchRequest<NSFetchRequestResult>();
+		let entity = NSEntityDescription.entity(forEntityName: "Student", in: managedObjectContext!);
+		
+		request.entity = entity;
+		request.fetchLimit = max;
+		
+		return try! managedObjectContext!.fetch(request) as! [Student]
+	}
 }
