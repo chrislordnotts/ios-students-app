@@ -32,7 +32,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVo-36-oQZ">
@@ -73,7 +73,7 @@
                         <viewControllerLayoutGuide type="bottom" id="l89-fW-Dcm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uHQ-w6-tqP">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fz1-Wh-rAr">
@@ -180,17 +180,27 @@
                         <viewControllerLayoutGuide type="bottom" id="XyL-Or-YXw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8vn-8F-6GO">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Wxc-Nz-GLI"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uploading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXI-Xy-aed">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Wxc-Nz-GLI" firstAttribute="centerY" secondItem="8vn-8F-6GO" secondAttribute="centerY" id="ADe-m4-n8b"/>
+                            <constraint firstItem="SXI-Xy-aed" firstAttribute="top" secondItem="Wxc-Nz-GLI" secondAttribute="bottom" constant="8" symbolic="YES" id="GT8-c2-6yf"/>
                             <constraint firstItem="Wxc-Nz-GLI" firstAttribute="centerX" secondItem="8vn-8F-6GO" secondAttribute="centerX" id="Ohg-Xt-W1j"/>
+                            <constraint firstItem="SXI-Xy-aed" firstAttribute="centerX" secondItem="Wxc-Nz-GLI" secondAttribute="centerX" id="vkc-GO-GLv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Uploading Students" id="bTt-Uh-iEk">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="LbZ-b0-xkL"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WfH-Lf-PcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
